@@ -437,9 +437,11 @@ def extract_words_with_frequency(critical_records, clause_texts):
         if node not in out_edges or not out_edges[node]:
             if len(path) >= 2:
                 if len(path) > 2:
-                    tail_char = path[-2]
-                    tail_char_followers = out_edges[tail_char]
-                    if len(tail_char_followers) >= 2:
+                    end_char = path[-2]
+                    end_char_followers = out_edges[end_char]
+                    if len(end_char_followers) >= 2:
+                        short_word = ''.join(path[:-1])
+                        max_paths.add(short_word)
                         return
                     
                     short_word = ''.join(path[:-1])
